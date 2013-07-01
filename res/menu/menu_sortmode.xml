@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item 	android:id="@+id/menu_exit_sortmode" 
+			android:title="@string/menu_exit_sortmode" 
+			android:icon="@android:drawable/ic_menu_revert"
+			android:alphabeticShortcut="x" />
+		
+</menu>

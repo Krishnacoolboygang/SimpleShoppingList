@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="at.mkweb.android.simpleshoppinglist"
+      android:versionCode="7"
+      android:versionName="2.5"
+      android:installLocation="preferExternal">
+    <application android:label="@string/app_name" android:icon="@drawable/simpleshoppinglist" android:debuggable="false">
+        <activity android:name="at.sourcefactory.android.simpleshoppinglist.SimpleShoppingList"
+                  android:label="@string/app_name"
+                  android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="at.sourcefactory.android.simpleshoppinglist.ManageLists" android:label="@string/manage_lists_name" android:configChanges="orientation"></activity>
+        <activity android:name="at.sourcefactory.android.simpleshoppinglist.Settings" android:label="@string/settings_name" android:configChanges="orientation"></activity>
+
+    </application>
+    <uses-sdk android:minSdkVersion="4" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+
+</manifest> 
