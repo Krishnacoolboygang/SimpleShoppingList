@@ -43,6 +43,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -142,13 +143,13 @@ public class SimpleShoppingList extends Activity {
         
         // Settings added for Version 1.5
         try {
-        	db.execSQL("CREATE TABLE settings (id INTEGER PRIMARY KEY AUTOINCREMENT, key VARCHAR(255), value BOOLEAN);");
+        	db.execSQL("CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY AUTOINCREMENT, key VARCHAR(255), value BOOLEAN);");
         } catch(Exception e) {
         	// Nothing to do
         }
 
         try {
-        	db.execSQL("CREATE TABLE sort (id INTEGER PRIMARY KEY AUTOINCREMENT, category_id INTEGER, item_id INTEGER, sort_nr INTEGER);");
+        	db.execSQL("CREATE TABLE IF NOT EXISTS sort (id INTEGER PRIMARY KEY AUTOINCREMENT, category_id INTEGER, item_id INTEGER, sort_nr INTEGER);");
         } catch(Exception e) {
         	// Nothing to do
         }
@@ -164,7 +165,16 @@ public class SimpleShoppingList extends Activity {
         c = db.rawQuery("SELECT id FROM settings WHERE key = 'removed_to_end';", null);
         if(c.getCount() == 0) {
         	
+        	Log.d("DBINIT", "INSERT INTO settings (id, key, value) VALUES (null, 'removed_to_end', 0);");
         	db.execSQL("INSERT INTO settings (id, key, value) VALUES (null, 'removed_to_end', 0);");
+        }
+        c.close();
+        
+        c = db.rawQuery("SELECT id FROM settings WHERE key = 'sort_alphabeticaly';", null);
+        if(c.getCount() == 0) {
+        	
+        	Log.d("DBINIT", "INSERT INTO settings (id, key, value) VALUES (null, 'sort_alphabeticaly', 0);");
+        	db.execSQL("INSERT INTO settings (id, key, value) VALUES (null, 'sort_alphabeticaly', 0);");
         }
         c.close();
     	
@@ -316,14 +326,38 @@ public class SimpleShoppingList extends Activity {
         
         c.close();
         
+        Log.d("DBINIT", "SELECT value FROM settings WHERE key = 'sort_alphabeticaly';");
+        boolean sortAlphabeticaly = false;
+        Cursor c2 = db.rawQuery("SELECT value FROM settings WHERE key = 'sort_alphabeticaly';", null);
+        if(c2.getCount() > 0) {
+        	c2.moveToFirst();
+        	
+        	if(c2.getInt(c.getColumnIndex("value")) == 1) {
+        	
+        		sortAlphabeticaly = true;
+        	}
+        }
+        
+        c2.close();
+        
         String sql = "SELECT `items`.`id`, " +
 		"				`items`.`name`, " +
 		"				`items`.`active`, " +
 		"				`sort`.`sort_nr` " +
 		"		FROM 	`items` " +
 		"		LEFT JOIN `sort` ON (`sort`.`category_id` = `items`.`category_id` AND `sort`.`item_id` = `items`.`id`) " +
-		"		WHERE `items`.`category_id` = " + (int) categoryId + 
-		(moveToEnd ? " ORDER BY `sort`.`sort_nr`, `items`.`active` DESC" : " ORDER BY `sort`.`sort_nr`");
+		"		WHERE `items`.`category_id` = " + (int) categoryId +
+		"		ORDER BY ";
+        
+        if(moveToEnd) {
+        	sql = sql.concat(" `items`.`active` DESC, ");
+    	}
+        
+        if(sortAlphabeticaly) {
+    		sql = sql.concat("`items`.`name`");
+        } else {
+        	sql = sql.concat("`sort`.`sort_nr`");
+        }
         
         c = db.rawQuery(sql, null);
         
@@ -414,6 +448,7 @@ public class SimpleShoppingList extends Activity {
 		dialog.setTitle(getText(R.string.dialog_new_item_title));
 		dialog.setMessage(getText(R.string.dialog_new_item_message));
 		
+		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 		dialog.show();
     }
     

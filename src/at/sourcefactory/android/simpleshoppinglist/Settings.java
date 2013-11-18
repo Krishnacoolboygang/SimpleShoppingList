@@ -62,6 +62,9 @@ public class Settings extends Activity {
 		
 		Cursor c = db.rawQuery("SELECT id, key, value FROM settings", null);
 		
+		linear = ((LinearLayout) findViewById(R.id.ContentLinearLayout));
+		linear.removeAllViews();
+		
 		if(c.getCount() > 0) {
 			
 			c.moveToFirst();
@@ -71,10 +74,11 @@ public class Settings extends Activity {
 				String key 		= c.getString(c.getColumnIndex("key"));
 				String v 		= c.getString(c.getColumnIndex("value"));
 				int value 		= c.getInt(c.getColumnIndex("value"));
-				Log.d("currentValue", v);
-				Log.d("currentValue int", "" + value);
+				Log.d("currentValue", key);
+				Log.d("currentValue int", "" + v);
 				
 				final String name = getString(getResources().getIdentifier("setting_" + key, "string", "at.mkweb.android.simpleshoppinglist"));
+				Log.d("name", name);
 				
 				final TableRow tr = new TableRow(this);
 				
@@ -114,13 +118,10 @@ public class Settings extends Activity {
 						cv.put("id", settingId);
 						db.update("settings", cv, "id = " + settingId, null);
 						
-						Toast t = Toast.makeText(instance, name + " " + getText(R.string.changed_to) + " " + (isChecked ? getText(R.string.yes) : getString(R.string.no)), Toast.LENGTH_SHORT);
+						Toast t = Toast.makeText(instance, name + " " + (isChecked ? getText(R.string.enabled) : getString(R.string.disabled)), Toast.LENGTH_SHORT);
 						t.show();
 					}
 				});
-				
-				linear = ((LinearLayout) findViewById(R.id.ContentLinearLayout));
-				linear.removeAllViews();
 				
 				tr.addView(tv);
 				tr.addView(cb);

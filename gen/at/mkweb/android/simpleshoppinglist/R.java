@@ -52,7 +52,6 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int button_cancel=0x7f05001b;
         public static final int button_ok=0x7f05001a;
-        public static final int changed_to=0x7f050027;
         public static final int dialog_clear_message=0x7f05000e;
         public static final int dialog_clear_title=0x7f05000d;
         public static final int dialog_exit_message=0x7f050008;
@@ -69,6 +68,8 @@ public final class R {
         public static final int dialog_rename_item_title=0x7f050015;
         public static final int dialog_rename_list_message=0x7f050014;
         public static final int dialog_rename_list_title=0x7f050013;
+        public static final int disabled=0x7f050029;
+        public static final int enabled=0x7f050028;
         public static final int err_cat_notfound=0x7f050017;
         public static final int err_elem_not_entered=0x7f050019;
         public static final int err_no_items_yet=0x7f050018;
@@ -86,6 +87,7 @@ public final class R {
         public static final int no=0x7f050004;
         public static final int renamed_to=0x7f050006;
         public static final int setting_removed_to_end=0x7f050026;
+        public static final int setting_sort_alphabeticaly=0x7f050027;
         public static final int settings_name=0x7f050002;
         public static final int yes=0x7f050003;
     }

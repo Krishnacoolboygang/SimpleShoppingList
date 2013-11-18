@@ -54,5 +54,9 @@
     <string name="menu_back">Go Back</string>
     
     <string name="setting_removed_to_end">Move bought items to end</string>
-    <string name="changed_to">changed to</string>
+    <string name="setting_sort_alphabeticaly">Sort items alphabeticaly</string>
+
+    <string name="enabled">enabled</string>
+    <string name="disabled">disabled</string>
+   
 </resources>
