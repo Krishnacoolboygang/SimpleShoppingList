@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package at.mkweb.android.simpleshoppinglist;
+package at.sourcefactory.android.simpleshoppinglist;
 
 public final class R {
     public static final class attr {

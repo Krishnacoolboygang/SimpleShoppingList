@@ -38,7 +38,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
-import at.mkweb.android.simpleshoppinglist.R;
 
 public class List extends TableRow implements OnLongClickListener {
 

@@ -42,7 +42,6 @@ import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-import at.mkweb.android.simpleshoppinglist.R;
 
 public class Item extends TableRow implements OnClickListener, OnLongClickListener {
 

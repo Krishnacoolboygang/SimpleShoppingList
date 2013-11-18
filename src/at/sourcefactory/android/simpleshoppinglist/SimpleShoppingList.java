@@ -50,7 +50,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import at.mkweb.android.simpleshoppinglist.R;
 
 public class SimpleShoppingList extends Activity {
 	

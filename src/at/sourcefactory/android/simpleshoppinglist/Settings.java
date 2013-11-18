@@ -12,16 +12,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import at.mkweb.android.simpleshoppinglist.R;
 
 public class Settings extends Activity {
 	
@@ -77,7 +76,7 @@ public class Settings extends Activity {
 				Log.d("currentValue", key);
 				Log.d("currentValue int", "" + v);
 				
-				final String name = getString(getResources().getIdentifier("setting_" + key, "string", "at.mkweb.android.simpleshoppinglist"));
+				final String name = getString(getResources().getIdentifier("setting_" + key, "string", "at.sourcefactory.android.simpleshoppinglist"));
 				Log.d("name", name);
 				
 				final TableRow tr = new TableRow(this);
